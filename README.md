@@ -368,16 +368,9 @@ Gist == traditional pastebin + **version control** for code snippets + **easy fo
     5. Create a pull request
         - What file was changed
         - diff: what the changes were
-
-<div align="center">
-<img width="" height="" src="images/create_pull_request.png">
+<div>
+<img style="display:block; margin-left:auto; margin-right:auto" src="images/create_pull_request.png" alt="..." />
 </div>
-
-<div align="center">
-![](images/create_pull_request.png)
-</div>
-
-![](images/create_pull_request.png)
 
 - Handle contributions from other developers as an **owner**
      - Merge pull request or
