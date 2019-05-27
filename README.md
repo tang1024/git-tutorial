@@ -174,6 +174,19 @@ Options of `git commit`:
   - For example, to add everything changed to the stage area and amend the previous commit:<br />
   `$ git commit -a --amend`
 
+**Delete** commits of current local branch:
+
+Undoing the Last Commit
+
+`$ git reset --soft HEAD~1`
+
+`$ git reset --hard HEAD~1`
+
+#### Undoing Multiple Commits
+The same technique allows you to return to any previous revision:
+
+`$ git reset --hard 0ad5a7a6`
+
 ### 3.1.5 Log of Commit
 In order to show the history of the project as a series of commits, 
 we use `git log` to view a history of the commits in the project:
@@ -308,6 +321,10 @@ then, we have a merge commit in the new-branch
 
 `$ git log --graph`
 
+## Diffing Files
+## Merging Branches
+## Tags
+
 # Remote Repositary: Github
 [GitHub Guides](https://guides.github.com/)
 
@@ -368,9 +385,8 @@ Gist == traditional pastebin + **version control** for code snippets + **easy fo
     5. Create a pull request
         - What file was changed
         - diff: what the changes were
-<div>
-<img style="display:block; margin-left:auto; margin-right:auto" src="images/create_pull_request.png" alt="..." />
-</div>
+
+![](images/create_pull_request.png)
 
 - Handle contributions from other developers as an **owner**
      - Merge pull request or
