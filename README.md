@@ -339,6 +339,11 @@ default remote: origin<br />
 `$ git commit -m "message"`<br />
 `$ git push -u remote-name master`
 
+To remove a commit you already pushed to your origin or to another remote repository 
+you have to first delete it locally like in the previous step 
+and then push your changes to the remote.<br />
+`$ git push origin +master`
+
 ## Gist
 Gist, another service operated by Github, a **pastebin-style** site that is for hosting **code snippets**.<br />
 Gist == traditional pastebin + **version control** for code snippets + **easy forking** + SSL encryption for private pastes.
