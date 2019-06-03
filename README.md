@@ -14,12 +14,12 @@
   - Install Git
   - Configuring Git
   - Initializing Repository
-- [3 Core of Git](#staging-area)
+- [3 Local Repositary](#staging-area)
   - Staging Area
   - Status Command
   - Commits
   - ignoring files
-  - Viewing the Log by $ git log
+  - History of Commits
   - Git Branches
   - fetch / pull
   - diff
@@ -27,11 +27,19 @@
   - tags
   - stashing
   - rebase
-- [4 Remote Repositary, Github]()
+- [Branches]()
+  - empty
+- [Remote Repositary, Github]()
   - SSH
   - remote
+  - Push
+- [Teamwork on Github]()
+  - Fork
+  - Creating a pull request
+  - Handling a pull request
+- [Other Services on Github]()
   - GitHub Pages
-  - Contributing
+  - Gist
 
 ## 1 Fundamentals of Git
 ### 1.1 What is Git
