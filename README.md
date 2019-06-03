@@ -1,11 +1,12 @@
-# Markdown for Github
+# Git Tutorial
+## Markdown for Github
 [Basic writing and formatting syntax](https://help.github.com/en/articles/basic-writing-and-formatting-syntax)
 
 [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
 
 [GitHub Flavored Markdown Spec](https://github.github.com/gfm/)
 
-# Table of Contents
+## Table of Contents
 - [1 Fundamentals of Git](#1-fundamentals-of-git)
   - What is Git
   - Git Internals
@@ -32,8 +33,8 @@
   - GitHub Pages
   - Contributing
 
-# 1 Fundamentals of Git
-## 1.1 What is Git
+## 1 Fundamentals of Git
+### 1.1 What is Git
 Git is a distributed **SCM (Source Control Management)** system.
 
 - Free and open source
@@ -43,17 +44,17 @@ Git is a distributed **SCM (Source Control Management)** system.
 - Fast speed and automated efficiency
 - **Github**, a popular git remote repository
 
-## 1.2 Git Internals (Git Objects)
+### 1.2 Git Internals (Git Objects)
 The core of Git is a simple **key-value** data store.
 
-### cat-file
+#### cat-file
 Provide content or type and size information for repository objects:<br />
 **git cat-file**
 
 Pretty-print the contents of object based on its type:<br />
 `$ git cat-file -p xxxxxxx`
 
-### 1.2.1 Key
+#### 1.2.1 Key
 For accessing Git Objects, all objects have a unique, 40-character, SHA-1 hash.
 - The first 2 characters: the name of the directory
 - The remaining 38 characters: the name of the file 
@@ -289,7 +290,9 @@ We start out with a master branch automatically when we initialize a repository.
     1. Switch back to master branch<br />
         `$ git checkout master`
     2. Delete the branch<br />
-        `$ git branch -d branch-name`
+        `$ git branch -d branch-name`<br />
+        Force to delete the branch<br />
+        `$ git branch -D branch_name`<br />
 
 - Branches are **isolated** sandboxes. Making any changes in a branch will not affect the other branches.
 
@@ -322,13 +325,85 @@ then, we have a merge commit in the new-branch
 `$ git log --graph`
 
 ## Diffing Files
+Diffing is a way to view the differenence between files.
+
+There're many 3rd party diffing tools and Git can be configured to use them.
+
+Git's built-in default file differ.
+We can compare files, branches or anything that has a hash.
+
+`$ git diff`
+
+`$ git diff FETCH_HEAD`
+
+`$ git diff new-branch master`
+
+change the order of the branches<br />
+`$ git diff master new-branch`
+
+`$ git diff master...new-branch`
+
+`$ git diff master new-branch --name-only`
+
+`$ git diff master new-branch --stat`
+
 ## Merging Branches
+Merging means to take some content from one branch and merge it into another branch.
+
+- fast-forward
+- up-stream
+- 'recursive' strategy
+
+We specify the other branch we would like to merge into master branch we are currently on:<br />
+`$ git merge another-branch`
+
 ## Tags
+Used to mark a pariticular point in a project's history as special, such as a release.
+
+Tags, like the branches, can point to a specific commit.
+
+There are two types of tag:<br />
+1. Light-weight or simple
+2. Annotated (recommended)
+
+To show the tags the branch currently has:<br />
+`$ git tag`
+
+Add a tag to the last commit:<br />
+`$ git tag 0.1.0`
+
+To show the commit corresponding to a tag:<br />
+`$ git show 0.1.0`
+
+actually shows:<br />
+1. full hash of the commit
+2. short hash of the parent commit
+3. author
+4. date
+5. commit message
+
+make an annotated tag by `-a` and a short hash:<br />
+`$ git tag -a 0.0.1 7b37a84`<br />
+we need to write a tag message for annotation<br />
+
+`$ git show 0.0.1` will show more information because it's annotated.
+
+we can checkout the commit the tag points to:<br />
+`$ git checkout 0.0.1`<br />
+then the HEAD is detached from 0.0.1<br />
+
+never make changes when the HEAD is detached
+
+tags are not pushed to remote repository by default
 
 # Remote Repositary: Github
 [GitHub Guides](https://guides.github.com/)
+A remote repository is just another copy of our repository on another computer.
 
 ## SSH Settings
+we can only push to Github with a trusted computer. 
+To make our computer trusted we should create an RSA key-pair
+
 1. Generate rsa key pair: `$ ssh-keygen`
     - Using the provided email as a label: `$ ssh-keygen -t rsa -b 4096 -C "username@email.com"`
       - `-t dsa | ecdsa | ed25519 | rsa` Specifies the type of of key to create.
@@ -351,6 +426,8 @@ default remote: origin<br />
 3. Verify the new remote.<br />
 `$ git remote -v`
 
+## Git push
+use the push command to send code to a remote
 **$ git push**<br />
 `$ git add .`<br />
 `$ git commit -m "message"`<br />
@@ -361,33 +438,65 @@ you have to first delete it locally like in the previous step
 and then push your changes to the remote.<br />
 `$ git push origin +master`
 
-## Gist
-Gist, another service operated by Github, a **pastebin-style** site that is for hosting **code snippets**.<br />
-Gist == traditional pastebin + **version control** for code snippets + **easy forking** + SSL encryption for private pastes.
 
-## Github Pages
-- There are two types of Github Pages:
-  1. User or company pages
-      - Create a repository named as `user.github.io`
-      - The URL will be `http//user.github.io`
-  2. Project or repository pages
-      - Create a branch named as `gh-pages` for the repository
-      - The URL will be `http//user.github.io/repository-name/`
-- We can also use a generator to create these static sites.<br />
-    `https://pages.github.com/`
 
 ## Contributors
-- Contribute to other open-source projects as a **contributor**
-    1. Fork (make a copy) the repository where to contribute
-    2. Read CONTRIBUTING.md (optional)
-    3. Edit the forked repository
-    4. e.g. Commit directly to the `master` branch
-    5. Create a pull request
-        - What file was changed
-        - diff: what the changes were
+### Make contributions to other repositories
+As a **contributor**, we can contribute to other open-source projects.
 
-![](images/create_pull_request.png)
+#### make some changes to the original repository
+1. Fork (make a copy) the repository where to contribute
+2. Read CONTRIBUTING.md (optional) (tell people what they expect)
+3. Edit the forked repository
+4. Commit directly to the `master` branch of the forked repository
 
-- Handle contributions from other developers as an **owner**
-     - Merge pull request or
-     - Close and comment without any action
+#### Make a pull request
+1. Create a pull request to the original unforked repository by clicking the button<br />
+    ![](images/pull_request01.png)
+2. Discuss and review teh changes in this comparison with others
+- What file was changed
+- diff: what the changes were<br />
+    ![](images/pull_request02.png)
+3. Write down the title and description of the request<br />
+    ![](images/pull_request03.png)
+4. We get a update page<br />
+    ![](images/pull_request04.png)
+
+### Handle contributions
+As the **owner**, we need to deal with pull requests from other developers.
+
+Get a notification as soon as we logined in<br />
+![](images/pull_request_notification.png)
+
+we will go to the update page<br />
+![](images/pull_request04.png)<br />
+![](images/merge_pull_request_page.png)<br />
+
+- Merge pull request or
+- Close and comment without any action
+
+Merge pull request<br />
+![](images/merge_pull_request.png)<br />
+
+Close pull request<br />
+![](images/close_pull_request.png)<br />
+
+## 9. Other Service on Github
+### 9.1 Github (Static) Pages
+- There are two types of Github Pages:<br />
+  1. User or company pages
+  2. Project or repository pages
+- We can also use a generator to create these static sites:<br />
+    `https://pages.github.com/`
+
+#### Pages for a user or company
+- Create a **repository** named as `user.github.io`
+- The URL will be `http//user.github.io`
+
+#### Pages for a project or repository
+- Create a **branch** named as `gh-pages` for the repository
+- The URL will be `http//user.github.io/repository-name/`
+
+### 9.2 Gist
+Gist, another service operated by Github, a **pastebin-style** site that is for hosting **code snippets**.<br />
+Gist == traditional pastebin + **version control** for code snippets + **easy forking** + SSL encryption for private pastes.
