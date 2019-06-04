@@ -20,15 +20,14 @@
   - Commits
   - ignoring files
   - History of Commits
-  - Git Branches
-  - fetch / pull
-  - diff
-  - merge
   - tags
   - stashing
   - rebase
 - [Branches]()
-  - empty
+  - Git Branches
+  - fetch / pull
+  - diff
+  - merge
 - [Remote Repositary, Github]()
   - SSH
   - remote
@@ -365,6 +364,30 @@ Merging means to take some content from one branch and merge it into another bra
 We specify the other branch we would like to merge into master branch we are currently on:<br />
 `$ git merge another-branch`
 
+#### Resolving merge conflicts
+Merge conflicts are caused when the same file is changed in different branches.
+
+When we try to merge the branches, 
+we have to tell Git which version of the content we want to keep.
+
+When
+"Automatic merge failed; fix conflicts and then commit the result."
+
+remove any content we don't want to keep and run commit
+
+#### Rebasing branches
+to keep the history of master branch clean
+
+squashing multiple commits into a single commit<br />
+-i to make the rebase interactive<br />
+`$ git rebase -i aefa25f`
+
+Bring changes in from other branches, 
+but put them under the commits we've made in the branch we're working in<br />
+First, rewinding head to replay your work on top of it...<br />
+Applying: ...<br />
+`$ git rebase master`
+
 ## Tags
 Used to mark a pariticular point in a project's history as special, such as a release.
 
@@ -508,3 +531,58 @@ Close pull request<br />
 ### 9.2 Gist
 Gist, another service operated by Github, a **pastebin-style** site that is for hosting **code snippets**.<br />
 Gist == traditional pastebin + **version control** for code snippets + **easy forking** + SSL encryption for private pastes.
+
+
+### 10. Intermediate Usage
+#### Stashing Changes
+Stashing is a way to take changes in our repository and
+put them somewhere safe.
+
+Useful when we need to switch branches but Git won't let us.
+
+The stash is a stack that can take any number of stashes.
+
+The stashes are stored in reverse chronological order.
+
+???<br />
+restore working tree files<br />
+to reset the working directory very quickly<br />
+`$ git checkout .`
+
+To make a stash to temperally put the changes to the stash like a stack<br />
+`$ git stash`
+
+Use the list argument to view saved stashes<br />
+To show what we have stashed<br />
+`$ git stash list`<br />
+stash@{0} ... the most recent stash<br />
+stash@{1}<br />
+...
+
+To get a little report about a stash<br />
+`$ git stash show stash@{1}`
+
+To show a diff information in the little report<br />
+`$ git stash show stash@{0} -p`
+
+To show the difference between two stashes<br />
+`$ git diff stash@{0}..stash@{1}`
+
+To drop(remove) a stash<br />
+`$ git stash drop stash@{0}`
+
+To remove all the stashes as a whole<br />
+`$ git stash clear`
+
+associate a message to a stash by 'save' argument<br />
+`$ git stash save "message"`
+
+To bring back the changes<br />
+To apply a existing stash to the current branchg by 'apply'<br />
+for example, apply to the most recent stash<br />
+`$ git stash apply`
+
+To apply the most recent stash and drop it<br />
+`$ git stash pop`
+
+
