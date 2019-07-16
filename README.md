@@ -378,7 +378,7 @@ remove any content we don't want to keep and run commit
 #### Rebasing branches
 to keep the history of master branch clean
 
-squashing multiple commits into a single commit<br />
+Squashing multiple commits into a single commit<br />
 -i to make the rebase interactive<br />
 `$ git rebase -i aefa25f`
 
