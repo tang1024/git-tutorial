@@ -440,13 +440,19 @@ To make our computer trusted we should create an RSA key-pair
       - `-t dsa | ecdsa | ed25519 | rsa` Specifies the type of of key to create.
       - `-b bits` Specifies the number of bits in the key to create.
       - `-C comment` Provides a new comment.
-2. Use authentication agent and start ssh-agent in the background.<br />
+    - default directory for storing the keys: `C:\Users\<username>\.ssh`
+2. (optional) Use authentication agent and start ssh-agent in the background.<br />
 `$ ssh-agent -s`
-3. Add rsa key to ssh-agent.<br />
+3. (optional) Add rsa key to ssh-agent.<br />
 `$ ssh-add ./id_rsa`
-4. Paste **id_rsa.pub** in **SSH and GPG keys, Settings, Github** to make our computer trusted.
+4. Paste **id_rsa.pub** in **'New SSH key', 'SSH and GPG keys', Settings, Github** to make our computer trusted.
 5. Check if it works.<br />
-`$ ssh -T git@github.com`
+`$ ssh -T git@github.com`<br />
+You've successfully authenticated, but GitHub does not provide shell access.
+
+If password is still needed:
+- Make sure to use `git clone git@github.com:username/projectname.git` to clone the repository.
+- Make sure that `[remote "origin"] url = git@github.com:username/projectname.git` in `.git/config` for ssh repository.
 
 ## Working with Remotes
 **$ git remote**<br />
